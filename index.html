@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>血壓機 OCR 辨識系統</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>血壓機 OCR 辨識系統</h1>
+        
+        <div class="upload-section">
+            <label for="imageInput" class="upload-label">
+                <span>選擇血壓機照片</span>
+                <input type="file" id="imageInput" accept="image/*" style="display: none;">
+            </label>
+            <div class="upload-tips">
+                <small>💡 拍攝建議：請確保圖片清晰，只包含血壓機螢幕部分，光線充足</small>
+            </div>
+            <div id="imagePreview" class="image-preview"></div>
+        </div>
+
+        <div class="controls">
+            <button id="processBtn" class="btn btn-primary" disabled>開始辨識</button>
+            <button id="resetBtn" class="btn btn-secondary">重置</button>
+        </div>
+
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p>正在處理中...</p>
+        </div>
+
+        <div id="results" class="results hidden">
+            <h2>辨識結果</h2>
+            <div class="result-item">
+                <span class="label">收縮壓：</span>
+                <span id="systolic" class="value">-</span>
+            </div>
+            <div class="result-item">
+                <span class="label">舒張壓：</span>
+                <span id="diastolic" class="value">-</span>
+            </div>
+            <div class="result-item">
+                <span class="label">脈拍：</span>
+                <span id="pulse" class="value">-</span>
+            </div>
+            <div class="status-section">
+                <div id="status" class="status"></div>
+            </div>
+        </div>
+
+        <div id="error" class="error hidden"></div>
+
+        <div class="history-section">
+            <h2>測試記錄</h2>
+            <div class="history-controls">
+                <button id="clearHistoryBtn" class="btn btn-secondary">清除記錄</button>
+            </div>
+            <div id="historyList" class="history-list">
+                <!-- 記錄將動態添加在這裡 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Tesseract.js -->
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://accounts.google.com/gsi/client"></script>
+    <!-- 模組 -->
+    <script src="ocr-recognition.js"></script>
+    <script src="blood-pressure-analysis.js"></script>
+    <!-- 主控制器 -->
+    <script src="app.js"></script>
+</body>
+</html>
+
+
+
